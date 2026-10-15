@@ -36,6 +36,7 @@ main{max-width:760px;margin:auto;padding:0 20px 170px}
 .hz{height:2px;background:linear-gradient(90deg,var(--sun2),var(--sun1),transparent);margin-bottom:8px}
 section{padding:64px 0 28px}
 main>section{border-top:1px solid var(--line);margin-top:24px}
+main>section#welcome{border-top:0;margin-top:0;padding-top:32px}
 main>section#protocol{border-top:1px solid var(--line)}
 main>section#cards{border-top:1px solid var(--line)}
 h2{font-size:clamp(30px,6.5vw,38px);line-height:1.25;margin-bottom:24px}
@@ -63,12 +64,16 @@ main button{width:100%;min-height:54px;padding:12px 18px;border-radius:16px;font
 main .row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:18px}
 .phase-title{font-size:clamp(28px,6.5vw,36px);margin-top:2em}
 .write-line{display:block;width:100%;height:auto;min-height:3.2em;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--gold);font:inherit;line-height:1.65}
+.ritual-steps textarea+textarea{margin-top:10px}
+.ritual-steps>label{display:block;margin:0 0 14px;font-size:22px;font-weight:800}
 .auto-grow{overflow:hidden;resize:none}
 .write-line::placeholder,.write-lines::placeholder{color:var(--mut);opacity:.72}
 .write-lines{display:block;width:100%;min-height:10em;padding:0 2px;border:0;border-radius:0;background-color:transparent;background-image:linear-gradient(to bottom,transparent calc(2em - 1px),var(--line) calc(2em - 1px));background-size:100% 2em;color:var(--ink);font:inherit;line-height:2em;resize:vertical}
 .short-lines{min-height:4em}
-.focus-timer{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:clamp(220px,55vw,320px);margin:14px 0 20px;border:0;border-radius:22px;background:linear-gradient(90deg,var(--sun1) 0%,var(--sun1) var(--progress,100%),var(--sun2) var(--progress,100%),var(--sun2) 100%);color:var(--btnt);box-shadow:0 12px 34px #0002;transition:background .6s linear}
-.focus-timer.p{background:linear-gradient(90deg,var(--sun1) 0%,var(--sun1) var(--progress,100%),var(--sun2) var(--progress,100%),var(--sun2) 100%)}
+.focus-timer{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:clamp(220px,55vw,320px);margin:14px 0 20px;border:2px solid var(--sun1);border-radius:22px;background:linear-gradient(90deg,var(--sun1) 0%,var(--sun1) var(--progress,100%),var(--card) var(--progress,100%),var(--card) 100%);color:var(--btnt);box-shadow:0 12px 34px #0002;transition:background .6s linear}
+.focus-timer.p{background:linear-gradient(90deg,var(--sun1) 0%,var(--sun1) var(--progress,100%),var(--card) var(--progress,100%),var(--card) 100%)}
+.focus-timer #clock,.focus-timer .timer-label,.focus-timer #timerStatus{position:relative;z-index:1;border-radius:12px;background:var(--sun1);color:#17101c;padding:4px 14px}
+.focus-timer #timerStatus{padding:2px 10px}
 .tool.focus-tool{margin:20px 0;padding:0;border:0;background:transparent}
 .focus-timer .timer-label{font-size:clamp(30px,7vw,42px);font-weight:800;line-height:1.15}
 #clock{display:block;margin:4px 0;font:700 clamp(58px,17vw,102px)/1 'Fraunces',serif;font-variant-numeric:tabular-nums}
@@ -189,15 +194,19 @@ html.app #appnext:not([hidden]){display:block;position:fixed;left:0;right:0;bott
 <h2>Ritualize</h2>
 <p><span class="my">စွမ်းဆောင်ရည်မြင့် အားကစားသမားတိုင်းမှာ ပွဲမစခင် အမြဲလုပ်တဲ့ အစဉ်အလာတွေရှိတယ်။ Deep work မစခင် ကိုယ့် ritual ကို အရင်စပါ။ ritual က လွယ်လွယ်လေးနဲ့ လုပ်ရတာ ပျော်ဖို့ကောင်းရမယ်။</span><span class="en">Every elite athlete has a pre-game ritual. Start yours before deep work. Make it easy and enjoyable.</span></p>
 <p><span class="my">ကျနော့် ritual က coffee တစ်ခွက်ဖျော်တာကနေ စတယ်။ ပြီးရင် စားပွဲမှာထိုင်ပြီး ပြင်ဆင်ခြင်းကို ၁၀ မိနစ်လောက် ချရေးတယ်။</span><span class="en">Mine starts with brewing a coffee. Then I sit at my desk and write my prep for 10 minutes.</span></p>
-<label for="ghRitual"><span class="my">ကိုယ့် ritual</span><span class="en">My ritual</span></label>
-<textarea class="write-line auto-grow" id="ghRitual" rows="1" data-ph-my="ဥပမာ - ကော်ဖီဖျော်ပြီး စာအုပ်ဖွင့်" data-ph-en="e.g. Make coffee and open my notebook" placeholder="ဥပမာ - ကော်ဖီဖျော်ပြီး စာအုပ်ဖွင့်"></textarea>
+<div class="tool ritual-steps" id="ritualSetup">
+<label for="ghRitual"><span class="my">The Ritual</span><span class="en">The Ritual</span></label>
+<textarea class="write-line auto-grow" id="ghRitual" rows="1" data-ph-my="၁။ ဥပမာ - ကော်ဖီဖျော်မယ်" data-ph-en="1. Make coffee" placeholder="၁။ ဥပမာ - ကော်ဖီဖျော်မယ်"></textarea>
+<textarea class="write-line auto-grow" id="ghRitual2" rows="1" aria-label="Ritual step 2" data-ph-my="၂။ ဥပမာ - စားပွဲမှာထိုင်မယ်" data-ph-en="2. Sit at my desk" placeholder="၂။ ဥပမာ - စားပွဲမှာထိုင်မယ်"></textarea>
+<textarea class="write-line auto-grow" id="ghRitual3" rows="1" aria-label="Ritual step 3" data-ph-my="၃။ ဥပမာ - အသက်ရှူပြီး အနားယူမယ်" data-ph-en="3. Take a breath and relax" placeholder="၃။ ဥပမာ - အသက်ရှူပြီး အနားယူမယ်"></textarea>
+</div>
 </section>
 
 <section id="protocol">
 <h2>Deep Work</h2>
 <p><span class="my">အဆင့် ၃ ဆင့်ပဲရှိပါတယ်။ အရင်ဆုံး ritual လုပ်ပြီးမှ စပါ။</span><span class="en">Three steps. Begin with your ritual before you start.</span></p>
 
-<div data-ph="ritual" class="app-only"><h3 class="phase-title">Begin Your Ritual</h3><div class="tool"><label for="rin"><span class="my">ကိုယ့် ritual</span><span class="en">My ritual</span></label><textarea class="write-line auto-grow" id="rin" rows="1" data-ph-my="ဥပမာ - coffee တစ်ခွက်ဖျော်မယ်" data-ph-en="e.g. Make a coffee"></textarea><div class="row"><button class="p main-action" id="rb">Start the Prep</button></div></div></div>
+<div data-ph="ritual" class="app-only"><h3 class="phase-title">Begin Your Ritual</h3><div class="tool ritual-steps"><label for="rin1"><span class="my">The Ritual</span><span class="en">The Ritual</span></label><textarea class="write-line auto-grow" id="rin1" rows="1" data-ph-my="၁။ ကော်ဖီဖျော်မယ်" data-ph-en="1. Make coffee"></textarea><textarea class="write-line auto-grow" id="rin2" rows="1" aria-label="Ritual step 2" data-ph-my="၂။ စားပွဲမှာထိုင်မယ်" data-ph-en="2. Sit at my desk"></textarea><textarea class="write-line auto-grow" id="rin3" rows="1" aria-label="Ritual step 3" data-ph-my="၃။ အသက်ရှူပြီး အနားယူမယ်" data-ph-en="3. Take a breath and relax"></textarea><div class="row"><button class="p main-action" id="rb">Start the Prep</button></div></div></div>
 <div data-ph="prep"><h3 class="phase-title"><span class="my">၁။ ပြင်ဆင်ပါ</span><span class="en">1. Prep</span></h3>
 <p><span class="my">အရင်ဆုံး ကိုယ့် ritual ကို လုပ်ပါ။ ပြီးရင် ဒီနေ့အလုပ်ကို ချရေးပါ။</span><span class="en">Begin with your ritual, then write down the work for today.</span></p>
 <div class="tool" id="prep">
@@ -236,7 +245,7 @@ html.app #appnext:not([hidden]){display:block;position:fixed;left:0;right:0;bott
 <div class="row wrap-entry"><button class="p main-action" id="wrapOpen" disabled>Focus at least 1 min</button></div>
 </div>
 <div class="tool" id="wrapPanel" hidden>
-<div class="wrap-summary share-preview" id="sharePreview" aria-live="polite"><div class="share-emphasis" id="shareTimes"></div><div class="share-emphasis" id="shareDuration"></div><div id="shareWork" hidden></div><div id="shareDoneBlock" hidden><div>Done Tasks:</div><div class="share-done-list" id="shareDone"></div></div><div class="share-feeling" id="shareFeeling"></div></div>
+<div class="wrap-summary share-preview" id="sharePreview" aria-live="polite"><div class="share-emphasis" id="shareTimes"></div><div class="share-emphasis" id="shareDuration"></div><div id="shareWork" hidden><strong>Goal:</strong> <span id="shareWorkValue"></span></div><div id="shareDoneBlock" hidden><div><strong>Tasks:</strong></div><div class="share-done-list" id="shareDone"></div></div><div class="share-feeling" id="shareFeeling"></div></div>
 <label><span class="my">အပြီးသတ်ခဲ့တာတွေကို အမှန်ခြစ်ပါ။</span><span class="en">Tick off what you completed.</span></label>
 <div id="stepList"></div>
 <label for="feeling"><span class="my">ဒီ session အပေါ် ဘယ်လိုခံစားရလဲ။</span><span class="en">How do I feel about this session?</span></label>
@@ -306,7 +315,7 @@ $('#db').onclick=async()=>{
 const was=ed;setEdit(false);const html='<!doctype html>\n'+H.outerHTML;if(was)setEdit(true);
 try{const d=window.claude&&await claude.use('downloads');if(d){await d.save({filename:'golden-hour-club.html',data:html});return}}catch(e){if(e&&e.code==='declined')return}
 const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([html],{type:'text/html'}));a.download='golden-hour-club.html';a.click()};
-const K='gh_prep',stepIds=['step1','step2','step3','step4','step5'],ids=['p1','p3',...stepIds],setupIds=['ghPlace','ghTime','ghRitual'],SK='gh_session_v3';
+const K='gh_prep',stepIds=['step1','step2','step3','step4','step5'],ids=['p1','p3',...stepIds],setupIds=['ghPlace','ghTime','ghRitual','ghRitual2','ghRitual3'],SK='gh_session_v3';
 let session={totalMs:0,activeSince:null,blocks:0,lastBlockMs:0,startedAt:null,endedAt:null};
 try{const saved=JSON.parse(localStorage.getItem(K)||'{}');[...ids,...setupIds].forEach(i=>{if(saved[i])$('#'+i).value=saved[i]});if(saved.p2){saved.p2.split(/\r?\n/).slice(0,5).forEach((v,i)=>{if(v.trim())$('#'+stepIds[i]).value=v.replace(/^\s*\d+[.။、)\s]+/,'')})}session={...session,...JSON.parse(localStorage.getItem(SK)||'{}')}}catch(e){}
 if(session.totalMs&&!session.startedAt)session.startedAt=session.activeSince||Date.now()-session.totalMs;
@@ -323,19 +332,19 @@ function finishBlock(){if(!session.activeSince)return;session.lastBlockMs=Math.m
 function startBlock(){if(session.activeSince||elapsed()>=MAX)return;const now=Date.now();if(!session.startedAt)session.startedAt=now;session.endedAt=null;session.lastBlockMs=0;session.activeSince=now;saveSession()}
 const HOUR=36e5,pad2=n=>String(n).padStart(2,'0'),clockText=t=>{if(t<HOUR){const r=Math.ceil((HOUR-t)/1e3);return pad2(Math.floor(r/60))+':'+pad2(r%60)}const m=Math.floor(t/6e4);return Math.floor(m/60)+'h '+m%60+'m'};
 function render(){let total=elapsed();if(session.activeSince&&total>=MAX){finishBlock();total=elapsed()}const running=!!session.activeSince,started=running||session.blocks>0;$('#clock').textContent=clockText(total);$('#clock').hidden=!started;$$('.timer-label').forEach(el=>el.hidden=started);const status=$('#timerStatus');status.hidden=!started;status.textContent=running?'FOCUSING':'PAUSED';$('#wrapTime').textContent=fmt(total);const remaining=total>=MAX?0:(HOUR-(total%HOUR))/HOUR;$('#focusTimer').style.setProperty('--progress',`${remaining*100}%`);$('#focusTimer').setAttribute('aria-label',running?'Pause focus':started?'Resume focus':'Start Focus');$('#focusTimer').setAttribute('aria-pressed',String(running));$('#focusTimer').disabled=!running&&total>=MAX;const wrap=$('#wrapOpen');wrap.disabled=running||total<60000;setButtonLabel(wrap,total<60000?'Focus at least 1 min':running?'Pause focus to wrap':"Wrap Today's Session")}
-$('#ready').onclick=()=>{savePrep();if(!session.activeSince)startBlock();$('#wrapPanel').hidden=true;render();$('#focus').scrollIntoView({behavior:'smooth',block:'center'})};
+$('#ready').onclick=()=>{savePrep();$('#wrapPanel').hidden=true;render();$('#focus').scrollIntoView({behavior:'smooth',block:'center'})};
 $('#focusTimer').onclick=()=>{if(session.activeSince)finishBlock();else{startBlock();$('#wrapPanel').hidden=true}render()};
 $('#resetTimer').onclick=()=>{session={totalMs:0,activeSince:null,blocks:0,lastBlockMs:0,startedAt:null,endedAt:null};saveSession();$('#wrapPanel').hidden=true;render()};
 function shareDetails(){const done=[...document.querySelectorAll('#stepList input[data-kind="step"]:checked')].map(x=>x.nextElementSibling.textContent.trim());const goal=$('#p1').value.trim();const goalDone=!!goal&&!!$('#stepList input[data-kind="goal"]')?.checked;const start=session.startedAt||Date.now()-elapsed(),end=session.endedAt||Date.now();return {times:`${clockTime(start)} - ${clockTime(end)}`,duration:`${durationText(elapsed())} of Deep Focus`,goal,goalDone,done,feeling:$('#feeling').value.trim()}}
-function sessionText(){const d=shareDetails();const details=[...(d.goal?[`Working on: ${d.goalDone?'✅':''}${d.goal}`]:[]),...(d.done.length?['Done Tasks:',...d.done.map(x=>`✅${x}`)]:[])];return `${d.times}\n${d.duration}${details.length?`\n\n${details.join('\n')}`:''}${d.feeling?`\n\n${d.feeling}`:''}`}
-function updateSharePreview(){const d=shareDetails();$('#shareTimes').textContent=d.times;$('#shareDuration').textContent=d.duration;const work=$('#shareWork');work.hidden=!d.goal;work.textContent=d.goal?`Working on: ${d.goalDone?'✅':''}${d.goal}`:'';const doneBlock=$('#shareDoneBlock');doneBlock.hidden=!d.done.length;$('#shareDone').replaceChildren(...d.done.map(task=>{const line=document.createElement('div');line.textContent=`✅${task}`;return line}));const feeling=$('#shareFeeling');feeling.hidden=!d.feeling;feeling.textContent=d.feeling}
+function sessionText(){const d=shareDetails();const details=[...(d.goal?[`${unicodeBold('Goal:')} ${d.goalDone?'✅':''}${d.goal}`]:[]),...(d.done.length?[`${unicodeBold('Tasks:')}`,...d.done.map(x=>`✅${x}`)]:[])];return `${d.times}\n${d.duration}${details.length?`\n\n${details.join('\n')}`:''}${d.feeling?`\n\n${d.feeling}`:''}`}
+function updateSharePreview(){const d=shareDetails();$('#shareTimes').textContent=d.times;$('#shareDuration').textContent=d.duration;$('#shareWork').hidden=!d.goal;$('#shareWorkValue').textContent=d.goal?`${d.goalDone?'✅':''}${d.goal}`:'';const doneBlock=$('#shareDoneBlock');doneBlock.hidden=!d.done.length;$('#shareDone').replaceChildren(...d.done.map(task=>{const line=document.createElement('div');line.textContent=`✅${task}`;return line}));const feeling=$('#shareFeeling');feeling.hidden=!d.feeling;feeling.textContent=d.feeling}
 $('#wrapOpen').onclick=()=>{session.endedAt=Date.now();saveSession();makeSteps();$('#wrapPanel').hidden=false;$('#wrapTime').textContent=fmt(elapsed());updateSharePreview();$('#wrapPanel').scrollIntoView({behavior:'smooth',block:'center'})};
 $('#feeling').addEventListener('input',()=>{sizeTextArea($('#feeling'));try{localStorage.setItem('gh_feeling',$('#feeling').value)}catch(e){};if(!$('#wrapPanel').hidden)updateSharePreview()});
 function clockTime(ms){return new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(ms))}
 function durationText(ms){const mins=Math.floor(ms/60000),hours=Math.floor(mins/60),left=mins%60;return hours?`${hours}h ${left}m`:`${left}m`}
 function unicodeBold(text){return [...text].map(ch=>{const n=ch.codePointAt(0);if(n>=65&&n<=90)return String.fromCodePoint(0x1D400+n-65);if(n>=97&&n<=122)return String.fromCodePoint(0x1D41A+n-97);if(n>=48&&n<=57)return String.fromCodePoint(0x1D7CE+n-48);return ch}).join('')}
 function telegramText(){return sessionText().split('\n').map((line,index)=>index<2?unicodeBold(line):line).join('\n')}
-$('#completeSession').onclick=()=>{try{localStorage.setItem('gh_feeling',$('#feeling').value)}catch(e){};const shareUrl='https://t.me/share/url?url=&text='+encodeURIComponent(telegramText());window.open(shareUrl,'_blank','noopener');const goalDone=!!$('#stepList input[data-kind="goal"]')?.checked;const completed=[...document.querySelectorAll('#stepList input[data-kind="step"]:checked')].map(x=>Number(x.dataset.step));if(goalDone)$('#p1').value='';completed.forEach(i=>{if(stepIds[i])$('#'+stepIds[i]).value=''});if(goalDone)sizeTextArea($('#p1'));completed.forEach(i=>{if(stepIds[i])sizeTextArea($('#'+stepIds[i]))});savePrep();session={totalMs:0,activeSince:null,blocks:0,lastBlockMs:0,startedAt:null,endedAt:null};saveSession();$('#feeling').value='';sizeTextArea($('#feeling'));try{localStorage.removeItem('gh_feeling');localStorage.removeItem('gh_done_steps');localStorage.removeItem('gh_done_goal')}catch(e){};$('#wrapPanel').hidden=true;$('#stepList').replaceChildren();render();$('#prep').scrollIntoView({behavior:'smooth',block:'center'})};
+$('#completeSession').onclick=()=>{try{localStorage.setItem('gh_feeling',$('#feeling').value)}catch(e){};const shareUrl='https://t.me/share/url?url=&text='+encodeURIComponent(telegramText());window.open(shareUrl,'_blank','noopener');const goalDone=!!$('#stepList input[data-kind="goal"]')?.checked;const completed=[...document.querySelectorAll('#stepList input[data-kind="step"]:checked')].map(x=>Number(x.dataset.step));if(goalDone){$('#p1').value='';$('#p3').value='';sizeTextArea($('#p1'));sizeTextArea($('#p3'))}completed.forEach(i=>{if(stepIds[i])$('#'+stepIds[i]).value=''});completed.forEach(i=>{if(stepIds[i])sizeTextArea($('#'+stepIds[i]))});savePrep();session={totalMs:0,activeSince:null,blocks:0,lastBlockMs:0,startedAt:null,endedAt:null};saveSession();$('#feeling').value='';sizeTextArea($('#feeling'));try{localStorage.removeItem('gh_feeling');localStorage.removeItem('gh_done_steps');localStorage.removeItem('gh_done_goal')}catch(e){};$('#wrapPanel').hidden=true;$('#stepList').replaceChildren();render();$('#prep').scrollIntoView({behavior:'smooth',block:'center'})};
 render();setInterval(render,1000);
 
 (()=>{const q=x=>document.querySelector(x),R=document.documentElement;
@@ -350,8 +359,9 @@ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([html],{
 try{ap={...ap,...JSON.parse(localStorage.getItem('gh_app')||'{}')}}catch(e){}
 const sv=()=>{try{localStorage.setItem('gh_app',JSON.stringify(ap))}catch(e){}},lock=async()=>{try{wl=await navigator.wakeLock.request('screen')}catch(e){}},relw=()=>{try{wl&&wl.release()}catch(e){}wl=null};
 const gate=()=>{$('#appnext').hidden=!(R.dataset.ph==='focus'&&!session.activeSince&&elapsed()>0)};
-function go(p){const k=PH.indexOf(p);ap.ph=p;ap.max=Math.max(ap.max||0,k);sv();R.dataset.ph=p;$$('#appbar nav button').forEach((b,i)=>{b.classList.toggle('on',i===k);b.disabled=i>ap.max});if(p==='ritual')$('#rin').value=$('#ghRitual').value;$('main').scrollTop=0;$$('textarea.auto-grow').forEach(sizeTextArea);gate()}
-$('#rin').oninput=e=>{const g=$('#ghRitual');g.value=e.target.value;g.dispatchEvent(new Event('input',{bubbles:true}));sizeTextArea(e.target)};
+function go(p){const k=PH.indexOf(p);ap.ph=p;ap.max=Math.max(ap.max||0,k);sv();R.dataset.ph=p;$$('#appbar nav button').forEach((b,i)=>{b.classList.toggle('on',i===k);b.disabled=i>ap.max});if(p==='ritual')ritualPairs.forEach(([a,b])=>$('#'+a).value=$('#'+b).value);$('main').scrollTop=0;$$('textarea.auto-grow').forEach(sizeTextArea);gate()}
+const ritualPairs=[['rin1','ghRitual'],['rin2','ghRitual2'],['rin3','ghRitual3']];
+ritualPairs.forEach(([appId,setupId])=>{$('#'+appId).addEventListener('input',e=>{const setup=$('#'+setupId);setup.value=e.target.value;setup.dispatchEvent(new Event('input',{bubbles:true}));sizeTextArea(e.target)})});
 $('#rb').onclick=()=>go('prep');$('#gw').onclick=()=>go('wrap');
 $('#ready').addEventListener('click',()=>{go('focus');setTimeout(()=>{session.activeSince?lock():0;gate()},0)});
 $('#focusTimer').addEventListener('click',()=>setTimeout(()=>{session.activeSince?lock():relw();gate()},0));
