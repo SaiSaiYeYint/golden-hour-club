@@ -106,7 +106,7 @@ html.app main{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px
 html.app main>*:not(#protocol){display:none!important}
 html.app #protocol{padding:0}html.app #protocol>*:not([data-ph]){display:none!important}
 html.app #protocol [data-ph]{display:none}
-html[data-ph=ritual].app [data-ph=ritual],html[data-ph=prep].app [data-ph=prep],html[data-ph=focus].app [data-ph=focus],html[data-ph=wrap].app [data-ph=wrap]{display:block}
+html[data-ph=ritual].app #protocol [data-ph=ritual],html[data-ph=prep].app #protocol [data-ph=prep],html[data-ph=focus].app #protocol [data-ph=focus],html[data-ph=wrap].app #protocol [data-ph=wrap]{display:block}
 html.app .phase-title{margin-top:8px}
 html.app #appbar{display:flex}
 #appbar{position:fixed;top:0;left:0;right:0;z-index:30;align-items:center;gap:4px;height:calc(env(safe-area-inset-top,0px) + 54px);padding:calc(env(safe-area-inset-top,0px) + 4px) 12px 0 6px;background:var(--bg)}
