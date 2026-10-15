@@ -34,9 +34,13 @@ main{max-width:760px;margin:auto;padding:0 20px 170px}
 @keyframes rise{from{transform:translateY(105%)}}
 @media(prefers-reduced-motion:reduce){.sun{animation:none}html{scroll-behavior:auto}}
 .hz{height:2px;background:linear-gradient(90deg,var(--sun2),var(--sun1),transparent);margin-bottom:8px}
-section{padding:56px 0 8px}
-h2{font-size:clamp(26px,6vw,34px)}
-h3{font-size:20px;margin-top:1.6em;color:var(--gold)}
+section{padding:64px 0 28px}
+main>section{border-top:1px solid var(--line);margin-top:24px}
+main>section#protocol{border-top:1px solid var(--line)}
+main>section#cards{border-top:1px solid var(--line)}
+h2{font-size:clamp(30px,6.5vw,38px);line-height:1.25;margin-bottom:24px}
+h3{font-size:clamp(21px,4.6vw,25px);line-height:1.35;margin:1.5em 0 .65em;color:var(--gold)}
+#flow h3{margin-top:1.35em}
 .flow-subtitle{color:var(--ink)}
 p,li{max-width:36em}
 ul{padding-left:1.1em}li{margin-bottom:.7em}
@@ -57,14 +61,14 @@ html[data-lang=en] .rule{font-family:'Fraunces',serif}
 #res{margin-top:14px;font-weight:600}
 main button{width:100%;min-height:54px;padding:12px 18px;border-radius:16px;font-size:18px;font-weight:700}
 main .row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:18px}
-.phase-title{font-size:clamp(25px,6vw,32px);margin-top:2em}
-.write-line{display:block;width:100%;height:auto;min-height:2.6em;padding:0 2px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;color:var(--gold);font:inherit;line-height:1.8}
+.phase-title{font-size:clamp(28px,6.5vw,36px);margin-top:2em}
+.write-line{display:block;width:100%;height:auto;min-height:3.2em;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--gold);font:inherit;line-height:1.65}
 .auto-grow{overflow:hidden;resize:none}
 .write-line::placeholder,.write-lines::placeholder{color:var(--mut);opacity:.72}
 .write-lines{display:block;width:100%;min-height:10em;padding:0 2px;border:0;border-radius:0;background-color:transparent;background-image:linear-gradient(to bottom,transparent calc(2em - 1px),var(--line) calc(2em - 1px));background-size:100% 2em;color:var(--ink);font:inherit;line-height:2em;resize:vertical}
 .short-lines{min-height:4em}
-.focus-timer{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:clamp(220px,55vw,320px);margin:14px 0 20px;border:0;border-radius:22px;background:linear-gradient(90deg,var(--sun2) 0%,var(--sun2) var(--progress,0%),var(--btn) var(--progress,0%),var(--btn) 100%);color:var(--btnt);box-shadow:0 12px 34px #0002;transition:background .6s linear}
-.focus-timer.p{background:linear-gradient(90deg,var(--sun2) 0%,var(--sun2) var(--progress,0%),var(--btn) var(--progress,0%),var(--btn) 100%)}
+.focus-timer{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:clamp(220px,55vw,320px);margin:14px 0 20px;border:0;border-radius:22px;background:linear-gradient(90deg,var(--sun1) 0%,var(--sun1) var(--progress,100%),var(--sun2) var(--progress,100%),var(--sun2) 100%);color:var(--btnt);box-shadow:0 12px 34px #0002;transition:background .6s linear}
+.focus-timer.p{background:linear-gradient(90deg,var(--sun1) 0%,var(--sun1) var(--progress,100%),var(--sun2) var(--progress,100%),var(--sun2) 100%)}
 .tool.focus-tool{margin:20px 0;padding:0;border:0;background:transparent}
 .focus-timer .timer-label{font-size:clamp(30px,7vw,42px);font-weight:800;line-height:1.15}
 #clock{display:block;margin:4px 0;font:700 clamp(58px,17vw,102px)/1 'Fraunces',serif;font-variant-numeric:tabular-nums}
@@ -102,12 +106,12 @@ html[data-lang=en] button{font-family:'Fraunces',Georgia,serif}
 
 .app-only,#appbar,#appnext{display:none}
 html.app body{overflow:hidden}
-html.app main{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 54px);bottom:0;margin:0 auto;padding:0 20px calc(100px + env(safe-area-inset-bottom,0px));overflow-y:auto;scrollbar-width:none}
+html.app main{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 62px);bottom:0;margin:0 auto;padding:12px 20px calc(100px + env(safe-area-inset-bottom,0px));overflow-y:auto;scrollbar-width:none}
 html.app main>*:not(#protocol){display:none!important}
-html.app #protocol{padding:0}html.app #protocol>*:not([data-ph]){display:none!important}
+html.app #protocol{padding:0;border-top:0;margin-top:0}html.app #protocol>*:not([data-ph]){display:none!important}
 html.app #protocol [data-ph]{display:none}
 html[data-ph=ritual].app #protocol [data-ph=ritual],html[data-ph=prep].app #protocol [data-ph=prep],html[data-ph=focus].app #protocol [data-ph=focus],html[data-ph=wrap].app #protocol [data-ph=wrap]{display:block}
-html.app .phase-title{margin-top:8px}
+html.app .phase-title{margin:12px 0 22px;font-size:clamp(32px,7.5vw,40px);line-height:1.2}
 html.app #appbar{display:flex}
 #appbar{position:fixed;top:0;left:0;right:0;z-index:30;align-items:center;gap:4px;height:calc(env(safe-area-inset-top,0px) + 54px);padding:calc(env(safe-area-inset-top,0px) + 4px) 12px 0 6px;background:var(--bg)}
 #appbar button{border:0;background:none;color:var(--mut);font:inherit;font-size:14px;padding:10px 8px;min-height:44px;cursor:pointer}
@@ -318,7 +322,7 @@ function makeSteps(){let done=[];let goalDone=false;try{done=JSON.parse(localSto
 function finishBlock(){if(!session.activeSince)return;session.lastBlockMs=Math.min(MAX-session.totalMs,Date.now()-session.activeSince);session.totalMs=Math.min(MAX,session.totalMs+session.lastBlockMs);session.activeSince=null;session.blocks++;saveSession()}
 function startBlock(){if(session.activeSince||elapsed()>=MAX)return;const now=Date.now();if(!session.startedAt)session.startedAt=now;session.endedAt=null;session.lastBlockMs=0;session.activeSince=now;saveSession()}
 const HOUR=36e5,pad2=n=>String(n).padStart(2,'0'),clockText=t=>{if(t<HOUR){const r=Math.ceil((HOUR-t)/1e3);return pad2(Math.floor(r/60))+':'+pad2(r%60)}const m=Math.floor(t/6e4);return Math.floor(m/60)+'h '+m%60+'m'};
-function render(){let total=elapsed();if(session.activeSince&&total>=MAX){finishBlock();total=elapsed()}const running=!!session.activeSince,started=running||session.blocks>0;$('#clock').textContent=clockText(total);$('#clock').hidden=!started;$$('.timer-label').forEach(el=>el.hidden=started);const status=$('#timerStatus');status.hidden=!started;status.textContent=running?'FOCUSING':'PAUSED';$('#wrapTime').textContent=fmt(total);$('#focusTimer').style.setProperty('--progress',`${Math.min(100,total/HOUR*100)}%`);$('#focusTimer').setAttribute('aria-label',running?'Pause focus':started?'Resume focus':'Start Focus');$('#focusTimer').setAttribute('aria-pressed',String(running));$('#focusTimer').disabled=!running&&total>=MAX;const wrap=$('#wrapOpen');wrap.disabled=running||total<60000;setButtonLabel(wrap,total<60000?'Focus at least 1 min':running?'Pause focus to wrap':"Wrap Today's Session")}
+function render(){let total=elapsed();if(session.activeSince&&total>=MAX){finishBlock();total=elapsed()}const running=!!session.activeSince,started=running||session.blocks>0;$('#clock').textContent=clockText(total);$('#clock').hidden=!started;$$('.timer-label').forEach(el=>el.hidden=started);const status=$('#timerStatus');status.hidden=!started;status.textContent=running?'FOCUSING':'PAUSED';$('#wrapTime').textContent=fmt(total);const remaining=total>=MAX?0:(HOUR-(total%HOUR))/HOUR;$('#focusTimer').style.setProperty('--progress',`${remaining*100}%`);$('#focusTimer').setAttribute('aria-label',running?'Pause focus':started?'Resume focus':'Start Focus');$('#focusTimer').setAttribute('aria-pressed',String(running));$('#focusTimer').disabled=!running&&total>=MAX;const wrap=$('#wrapOpen');wrap.disabled=running||total<60000;setButtonLabel(wrap,total<60000?'Focus at least 1 min':running?'Pause focus to wrap':"Wrap Today's Session")}
 $('#ready').onclick=()=>{savePrep();if(!session.activeSince)startBlock();$('#wrapPanel').hidden=true;render();$('#focus').scrollIntoView({behavior:'smooth',block:'center'})};
 $('#focusTimer').onclick=()=>{if(session.activeSince)finishBlock();else{startBlock();$('#wrapPanel').hidden=true}render()};
 $('#resetTimer').onclick=()=>{session={totalMs:0,activeSince:null,blocks:0,lastBlockMs:0,startedAt:null,endedAt:null};saveSession();$('#wrapPanel').hidden=true;render()};
