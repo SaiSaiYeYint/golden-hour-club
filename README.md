@@ -28,7 +28,7 @@ git add index.html
 git commit -m "what changed"
 git push
 ```
-Vercel deploys in under a minute.
+Vercel deploys in under a minute.ss
 
 ## Notes
 - App mode opens at `/#app`, so the phone's back button leaves it.
