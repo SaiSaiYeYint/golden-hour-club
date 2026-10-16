@@ -10,6 +10,7 @@
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17101c;--ink:#f6e7cf;--mut:#b9a6a0;--gold:#f5b94b;--line:#3a2a3a;--card:#211828;--btn:#f5b94b;--btnt:#17101c}}
 :root[data-theme="dark"]{--bg:#17101c;--ink:#f6e7cf;--mut:#b9a6a0;--gold:#f5b94b;--line:#3a2a3a;--card:#211828;--btn:#f5b94b;--btnt:#17101c}
 *{box-sizing:border-box}
+html,body{width:100%;max-width:100%;overflow-x:hidden;overscroll-behavior-x:none;touch-action:pan-y pinch-zoom}
 html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 96px);height:100%}
 body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:17px/1.8 'Noto Sans Myanmar','Instrument Sans',system-ui,sans-serif}
 html[data-lang=en] body{font-family:'Instrument Sans','Noto Sans Myanmar',system-ui,sans-serif;line-height:1.65}
@@ -26,7 +27,8 @@ button{display:inline-flex;align-items:center;justify-content:center;text-align:
 button > *{position:relative;top:7px}
 button.p{background:var(--btn);color:var(--btnt);border-color:var(--btn)}
 button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-main{max-width:760px;margin:auto;padding:0 20px 170px}
+main{width:100%;max-width:760px;min-width:0;margin:auto;padding:0 20px 170px}
+main>*{max-width:100%;min-width:0}
 .hero{position:relative;overflow:hidden;min-height:min(78vh,560px);padding-top:56px}
 .hero h1{font-size:clamp(46px,13vw,92px);font-weight:700;margin:0;letter-spacing:-.02em}
 .hero p{max-width:20em;color:var(--mut);font-size:19px}
