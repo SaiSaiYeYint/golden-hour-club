@@ -59,7 +59,6 @@ textarea{min-height:110px;resize:vertical}
 html[data-lang=en] .rule{font-family:'Fraunces',serif}
 .chips{display:flex;gap:8px;margin:10px 0}
 .chip.on{background:var(--btn);color:var(--btnt)}
-#clock{font:700 clamp(56px,16vw,96px)/1 'Fraunces',serif;font-variant-numeric:tabular-nums;margin:8px 0}
 .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 #res{margin-top:14px;font-weight:600}
 main button{width:100%;min-height:54px;padding:12px 18px;border-radius:16px;font-size:18px;font-weight:700}
@@ -72,13 +71,8 @@ main .row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:18px}
 .write-line::placeholder,.write-lines::placeholder{color:var(--mut);opacity:.72}
 .write-lines{display:block;width:100%;min-height:10em;padding:0 2px;border:0;border-radius:0;background-color:transparent;background-image:linear-gradient(to bottom,transparent calc(2em - 1px),var(--line) calc(2em - 1px));background-size:100% 2em;color:var(--ink);font:inherit;line-height:2em;resize:vertical}
 .short-lines{min-height:4em}
-.focus-timer{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:clamp(220px,55vw,320px);margin:14px 0 20px;border:2px solid var(--sun1);border-radius:22px;background:linear-gradient(90deg,var(--sun1) 0%,var(--sun1) var(--progress,100%),var(--card) var(--progress,100%),var(--card) 100%);color:var(--btnt);box-shadow:0 12px 34px #0002;transition:background .6s linear}
-.focus-timer.p{background:linear-gradient(90deg,var(--sun1) 0%,var(--sun1) var(--progress,100%),var(--card) var(--progress,100%),var(--card) 100%)}
-.focus-timer #clock,.focus-timer .timer-label,.focus-timer #timerStatus{position:relative;z-index:1;border-radius:12px;background:var(--sun1);color:#17101c;padding:4px 14px}
-.focus-timer #timerStatus{padding:2px 10px}
 .tool.focus-tool{margin:20px 0;padding:0;border:0;background:transparent}
-.focus-timer .timer-label{font-size:clamp(30px,7vw,42px);font-weight:800;line-height:1.15}
-#clock{display:block;margin:4px 0;font:700 clamp(58px,17vw,102px)/1 'Fraunces',serif;font-variant-numeric:tabular-nums}
+
 .total{color:var(--mut);font-size:15px;text-align:center}.total strong{color:var(--ink);font-variant-numeric:tabular-nums}
 .answer-line{display:block;margin:10px 0 30px;padding:0;border:0;color:var(--gold);font:800 clamp(32px,8vw,44px)/1.15 'Fraunces','Noto Serif Myanmar',Georgia,serif;font-variant-numeric:tabular-nums;max-width:none}
 .checkline{display:flex;align-items:center;gap:12px;min-height:44px;margin:8px 0;font-weight:400}.checkline input{width:26px;height:26px;flex:0 0 26px;margin:0;accent-color:var(--sun2)}
@@ -87,22 +81,22 @@ main .row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:18px}
 .main-action:disabled{opacity:.45;cursor:not-allowed}
 button{font-family:'Noto Serif Myanmar','Fraunces',Georgia,serif;font-weight:800}
 html[data-lang=en] button{font-family:'Fraunces',Georgia,serif}
-.focus-timer{min-height:clamp(175px,34vw,230px);padding:20px}
-.focus-timer #clock{font-weight:800}
-#clock{font-size:clamp(42px,11vw,68px)}
-#timerStatus{display:block;margin-top:8px;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
 .wrap-form{padding:20px}
 .wrap-summary{margin:4px 0 18px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--gold);font:inherit;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere}
 .share-preview>div{margin:0 0 6px;white-space:pre-wrap;overflow-wrap:anywhere}
 .share-emphasis{font-weight:800}
 .share-done-list{margin-top:4px}
+.share-preview #shareWork strong,.share-preview #shareDoneBlock>div:first-child strong{text-decoration:underline;font-weight:800}
+#shareWorkValue{display:block;margin-top:4px}
 .share-preview>div#shareWork,.share-preview>div#shareDoneBlock{margin-top:16px}
 .share-feeling{margin-top:28px!important}
 .wrap-time-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:6px 0 24px}
 .wrap-time-row label{flex:1 1 100%;margin:0}
 .wrap-time-row .answer-line{flex:1 1 auto;margin:0}
 .reset-timer{width:auto;min-width:170px;min-height:54px;padding:7px 18px;border-radius:12px;font-size:15px}
-@media(prefers-reduced-motion:reduce){.focus-timer{transition:none}}
+.reset-timer.p{background:#f6bf45!important;color:#17101c!important;border:2px solid #ffd36b!important;font-weight:900;box-shadow:0 6px 16px #0003}
+.reset-timer.p.is-confirming{background:#ff704a!important;color:#21100d!important;border-color:#ff9168!important;box-shadow:0 0 0 3px #ff704a44,0 8px 18px #0004}
+@media(prefers-reduced-motion:reduce){.focus-timer,.ft-dot,.ft-goal svg{transition:none!important}}
 .edit-on [contenteditable=true]{outline:1px dashed var(--gold);outline-offset:3px;cursor:text}
 .paper{border:1px solid var(--line);border-radius:14px;padding:8px 20px 14px;margin:16px 0;background:var(--card)}
 .paper p{margin:.75em 0}.paper h3{margin:2em 0 .6em}.paper h3:first-child{margin-top:.8em}
@@ -128,6 +122,24 @@ html.app #appbar{display:flex}
 html.app #appnext:not([hidden]){display:block;position:fixed;left:0;right:0;bottom:0;z-index:30;max-width:760px;margin:0 auto;padding:36px 20px calc(16px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--bg) 40%)}
 #appnext button{width:100%;min-height:54px;padding:12px 18px;border-radius:16px;font-size:18px;font-weight:700}
 #startApp{position:relative;z-index:2;max-width:340px;margin:26px 0 0;cursor:pointer}
+
+.focus-timer{display:block;width:100%;margin:14px 0 20px;padding:20px 20px 18px;border:1px solid var(--line);border-radius:22px;background:var(--card);color:var(--ink);text-align:left;cursor:pointer;font-family:inherit}
+.focus-timer.p{background:var(--card);color:var(--ink)}.focus-timer:disabled{opacity:.6}.focus-timer>*{position:static!important}
+.ft-top{display:flex;align-items:center;gap:10px;min-height:16px}
+.ft-top .timer-label,.ft-top #timerStatus{font-size:12px;font-weight:700;line-height:1.3;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.ft-dot{width:8px;height:8px;border-radius:50%;background:var(--line);transition:background .3s,box-shadow .3s}
+.focus-timer[aria-pressed=true] .ft-dot{background:var(--sun2);box-shadow:0 0 10px var(--sun2)}
+#timerPixels{display:block;width:100%;aspect-ratio:3/1;margin:22px 0 18px}
+.ft-bot{--clk:clamp(44px,13vw,68px);display:flex;align-items:center;justify-content:space-between;gap:12px}.ft-bot.long{--clk:clamp(30px,10vw,46px)}
+#clock{font:700 var(--clk)/1 'Fraunces',serif;font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:var(--ink);margin:0}
+.ft-goal{display:flex;align-items:center;color:var(--gold)}
+.ft-goal svg{width:calc(var(--clk)*.8);height:calc(var(--clk)*.8);fill:none;stroke:currentColor;stroke-width:1.9;stroke-linejoin:round;transition:fill .4s,filter .4s}
+.ft-goal.on svg{fill:currentColor;filter:drop-shadow(0 0 7px var(--gold))}
+.ft-goal .fl{display:none}.ft-goal.fire .st{display:none}.ft-goal.fire .fl{display:block;fill:url(#flameGrad);stroke:none;filter:drop-shadow(0 0 8px var(--sun2))}
+.ft-goal.pop svg{animation:starpop .7s cubic-bezier(.2,.9,.3,1.4)}
+@keyframes starpop{0%{transform:scale(1)}40%{transform:scale(1.45) rotate(-12deg)}100%{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.ft-goal.pop svg{animation:none}}
+#clock[hidden],#timerStatus[hidden],.timer-label[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -231,9 +243,9 @@ html.app #appnext:not([hidden]){display:block;position:fixed;left:0;right:0;bott
 </div>
 <div data-ph="focus"><h3 class="phase-title"><span class="my">၂။ အပြည့်အဝ အာရုံစိုက်ပါ</span><span class="en">2. Focus</span></h3>
 <p class="rule"><span class="my">လေးလေးနက်နက် လုပ်ရင်လုပ်၊ မလုပ်ရင် ဘာမှမလုပ်ပါနဲ့။</span><span class="en">Work deeply, or do nothing.</span></p>
-<p><span class="my">Timer ကို စတင်၊ ရပ်၊ ပြီး ဆက်စနိုင်ပါတယ်။ ရပ်လိုက်တဲ့အချိန်တိုင်းကို ဒီ session ရဲ့ စုစုပေါင်းအချိန်ထဲ ပေါင်းထည့်ပေးမယ်။ တစ်နာရီအထိ နောက်ပြန်ရေတွက်ပြီး၊ ကျော်သွားရင် ဆက်တက်ရေတွက်ပေးမယ်။</span><span class="en">Start, stop, and start another focus block. Every stopped block adds to your session total. It counts down the hour, then keeps counting up past it.</span></p>
+<p><span class="my">တစ်နေ့ ၁၀ မိနစ်ပဲ လုပ်နိုင်ရင်လည်း ရပါတယ်။ အစက်တွေ အပြည့်ဖြစ်ပြီး ကြယ်လေး လင်းလာရင် ဒီနေ့ပန်းတိုင် ရောက်ပါပြီ။ ဆက်လုပ်ရင် အစက်တွေ တစ်စက်ချင်း မှိန်သွားပြီး တစ်နာရီမှာ ပြီးမြောက်ပါမယ်။</span><span class="en">Ten minutes counts. When the dots fill up and the star lights, today's goal is met. Keep going and the dots fade out one by one until the hour is done.</span></p>
 <div class="tool focus-tool" id="focus">
-<button class="p focus-timer" id="focusTimer" type="button" aria-label="Start Focus" aria-pressed="false" style="--progress:0%"><span class="timer-label">Start Focus</span><strong id="clock" hidden>00:00</strong><span id="timerStatus" hidden></span></button>
+<button class="p focus-timer" id="focusTimer" type="button" aria-label="Start Focus" aria-pressed="false"><span class="ft-top"><i class="ft-dot" aria-hidden="true"></i><span class="timer-label">Start Focus</span><span id="timerStatus" hidden></span></span><canvas id="timerPixels" role="img" aria-label="Focus progress pixels"></canvas><span class="ft-bot"><strong id="clock">60:00</strong><span class="ft-goal" id="ftGoal" role="img" aria-label="10 minute goal"><svg class="st" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.2 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg class="fl" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="flameGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sun1)"/><stop offset="1" style="stop-color:var(--sun2)"/></linearGradient></defs><path transform="translate(12 11.55) scale(.92) translate(-12.25 -12)" d="M12.4 1.8c.7 3.3-.9 5-2.6 7-1.6 1.8-3.3 3.8-3.3 6.9 0 3.6 2.6 6.4 5.5 6.4s5.5-2.5 5.5-6.1c0-2.4-1-4.2-2.2-5.7-.4 1.4-1.1 2.2-2 2.6.6-3.8-.1-7.4-.9-11.1z"/></svg></span></span></button>
 </div>
 
 </div>
@@ -247,7 +259,7 @@ html.app #appnext:not([hidden]){display:block;position:fixed;left:0;right:0;bott
 <div class="row wrap-entry"><button class="p main-action" id="wrapOpen" disabled>Focus at least 1 min</button></div>
 </div>
 <div class="tool" id="wrapPanel" hidden>
-<div class="wrap-summary share-preview" id="sharePreview" aria-live="polite"><div class="share-emphasis" id="shareTimes"></div><div class="share-emphasis" id="shareDuration"></div><div id="shareWork" hidden><strong>Goal:</strong> <span id="shareWorkValue"></span></div><div id="shareDoneBlock" hidden><div><strong>Tasks:</strong></div><div class="share-done-list" id="shareDone"></div></div><div class="share-feeling" id="shareFeeling"></div></div>
+<div class="wrap-summary share-preview" id="sharePreview" aria-live="polite"><div class="share-emphasis" id="shareTimes"></div><div class="share-emphasis" id="shareDuration"></div><div id="shareWork" hidden><strong>Goal</strong><span id="shareWorkValue"></span></div><div id="shareDoneBlock" hidden><div><strong>Tasks</strong></div><div class="share-done-list" id="shareDone"></div></div><div class="share-feeling" id="shareFeeling"></div></div>
 <label><span class="my">အပြီးသတ်ခဲ့တာတွေကို အမှန်ခြစ်ပါ။</span><span class="en">Tick off what you completed.</span></label>
 <div id="stepList"></div>
 <label for="feeling"><span class="my">ဒီ session အပေါ် ဘယ်လိုခံစားရလဲ။</span><span class="en">How do I feel about this session?</span></label>
@@ -332,13 +344,22 @@ function elapsed(){return Math.min(MAX,session.totalMs+(session.activeSince?Date
 function makeSteps(){let done=[];let goalDone=false;try{done=JSON.parse(localStorage.getItem('gh_done_steps')||'[]');goalDone=localStorage.getItem('gh_done_goal')==='1'}catch(e){};const goal=$('#p1').value.trim();const lines=stepIds.map((id,index)=>({index,text:$('#'+id).value.trim()})).filter(x=>x.text);const list=$('#stepList');list.replaceChildren();const addCheck=(text,checked,key,index)=>{const label=document.createElement('label');label.className='checkline '+(key==='goal'?'goal-checkline':'subgoal-checkline');const box=document.createElement('input');box.type='checkbox';box.dataset.kind=key;box.dataset.step=String(index);box.checked=checked;box.addEventListener('change',()=>{if(key==='goal'){try{localStorage.setItem('gh_done_goal',box.checked?'1':'0')}catch(e){}}else{const checkedSteps=[...document.querySelectorAll('#stepList input[data-kind="step"]:checked')].map(x=>Number(x.dataset.step));try{localStorage.setItem('gh_done_steps',JSON.stringify(checkedSteps))}catch(e){}};updateSharePreview()});const span=document.createElement('span');span.textContent=text;label.append(box,span);list.append(label)};if(goal)addCheck(goal,goalDone,'goal',-1);lines.forEach(line=>addCheck(line.text,done.includes(line.index),'step',line.index))}
 function finishBlock(){if(!session.activeSince)return;session.lastBlockMs=Math.min(MAX-session.totalMs,Date.now()-session.activeSince);session.totalMs=Math.min(MAX,session.totalMs+session.lastBlockMs);session.activeSince=null;session.blocks++;saveSession()}
 function startBlock(){if(session.activeSince||elapsed()>=MAX)return;const now=Date.now();if(!session.startedAt)session.startedAt=now;session.endedAt=null;session.lastBlockMs=0;session.activeSince=now;saveSession()}
-const HOUR=36e5,pad2=n=>String(n).padStart(2,'0'),clockText=t=>{if(t<HOUR){const r=Math.ceil((HOUR-t)/1e3);return pad2(Math.floor(r/60))+':'+pad2(r%60)}const m=Math.floor(t/6e4);return Math.floor(m/60)+'h '+m%60+'m'};
-function render(){let total=elapsed();if(session.activeSince&&total>=MAX){finishBlock();total=elapsed()}const running=!!session.activeSince,started=running||session.blocks>0;$('#clock').textContent=clockText(total);$('#clock').hidden=!started;$$('.timer-label').forEach(el=>el.hidden=started);const status=$('#timerStatus');status.hidden=!started;status.textContent=running?'FOCUSING':'PAUSED';$('#wrapTime').textContent=fmt(total);const remaining=total>=MAX?0:(HOUR-(total%HOUR))/HOUR;$('#focusTimer').style.setProperty('--progress',`${remaining*100}%`);$('#focusTimer').setAttribute('aria-label',running?'Pause focus':started?'Resume focus':'Start Focus');$('#focusTimer').setAttribute('aria-pressed',String(running));$('#focusTimer').disabled=!running&&total>=MAX;const wrap=$('#wrapOpen');wrap.disabled=running||total<60000;setButtonLabel(wrap,total<60000?'Focus at least 1 min':running?'Pause focus to wrap':"Wrap Today's Session")}
+const HOUR=36e5,TEN_MIN=10*60e3,COLS=60,ROWS=20,PIXEL_COUNT=1200,pad2=n=>String(n).padStart(2,'0'),clockText=t=>{if(t<HOUR){const r=Math.ceil((HOUR-t)/1e3);return pad2(Math.floor(r/60))+':'+pad2(r%60)}const q=Math.floor(t/1e3);return Math.floor(q/3600)+'h '+pad2(Math.floor(q/60)%60)+'m '+pad2(q%60)+'s'};
+const cv=$('#timerPixels'),cx=cv.getContext('2d'),RAMP=matchMedia('(prefers-reduced-motion:reduce)').matches?1:450;let pxRaf=0,pixelOrderSeed=-1,pixelTurnOffRank=[];
+let gwas=null,pxC=null,pxCt=0;function pxCols(){const n=Date.now();if(pxC&&n-pxCt<1000)return pxC;pxCt=n;const cs=getComputedStyle(document.documentElement),h=k=>{let v=cs.getPropertyValue(k).trim().replace('#','');if(v.length===3)v=v.replace(/./g,'$&$&');return/^[0-9a-f]{6}$/i.test(v)?[0,2,4].map(i=>parseInt(v.slice(i,i+2),16)).join(','):null};pxC={on:h('--gold')||'245,185,75',head:h('--sun2')||'255,122,69',off:'rgba('+(h('--ink')||'246,231,207')+',.16)'};return pxC}
+let emSeed=-1,emRank=[];function emberRanks(){const seed=(Number(session.startedAt||0x475743)^0x9e3779b9)>>>0;if(seed===emSeed)return emRank;emSeed=seed;const o=Array.from({length:PIXEL_COUNT},(_,i)=>i);let st=seed;for(let i=o.length-1;i>0;i--){st=(Math.imul(st,1664525)+1013904223)>>>0;const j=st%(i+1);[o[i],o[j]]=[o[j],o[i]]}emRank=Array(PIXEL_COUNT);o.forEach((px,r)=>emRank[px]=r);return emRank}
+function drawPixels(t){const r=cv.getBoundingClientRect();if(!r.width||!cx)return 0;const d=window.devicePixelRatio||1,W=Math.round(r.width*d),H=Math.round(r.height*d);if(cv.width!==W||cv.height!==H){cv.width=W;cv.height=H}
+const C=pxCols(),rk=randomPixelRanks(),er=emberRanks(),p=Math.min(W/COLS,H/ROWS),rad=p*.3,ox=(W-p*COLS)/2,oy=(H-p*ROWS)/2,head=t<TEN_MIN?Math.floor(t/TEN_MIN*PIXEL_COUNT):-1,eh=t>=HOUR?Math.floor((Math.min(t,MAX)-HOUR)/((MAX-HOUR)/PIXEL_COUNT)):-1,rNext=t>=TEN_MIN&&t<HOUR?Math.ceil((t-TEN_MIN)/((HOUR-TEN_MIN)/PIXEL_COUNT)):-1;let lit=0;cx.clearRect(0,0,W,H);
+for(let i=0;i<PIXEL_COUNT;i++){const x=ox+(i%COLS+.5)*p,y=oy+(Math.floor(i/COLS)+.5)*p,on=Math.min(1,Math.max(0,(t-i*TEN_MIN/PIXEL_COUNT)/RAMP)),off=Math.min(1,Math.max(0,(t-(TEN_MIN+rk[i]*(HOUR-TEN_MIN)/PIXEL_COUNT))/RAMP)),a=on*(1-off);if(a>.5)lit++;
+cx.beginPath();cx.arc(x,y,rad,0,6.2832);cx.fillStyle=C.off;cx.fill();if(a>0){cx.beginPath();cx.arc(x,y,rad,0,6.2832);cx.fillStyle='rgba('+(i===head||rk[i]===rNext||(off>0&&off<1)?C.head:C.on)+','+a+')';cx.fill()}if(t>=HOUR){const em=Math.min(1,Math.max(0,(Math.min(t,MAX)-HOUR-er[i]*(MAX-HOUR)/PIXEL_COUNT)/RAMP));if(em>0){cx.beginPath();cx.arc(x,y,rad*(1+.8*(1-em)),0,6.2832);cx.fillStyle='rgba('+(er[i]===eh?C.on:C.head)+','+em+')';cx.fill()}}}return lit}
+if(window.ResizeObserver)new ResizeObserver(()=>drawPixels(elapsed())).observe(cv);
+function randomPixelRanks(){const seed=Number(session.startedAt||0x475743)>>>0;if(seed===pixelOrderSeed)return pixelTurnOffRank;pixelOrderSeed=seed;const order=Array.from({length:PIXEL_COUNT},(_,i)=>i);let state=seed;for(let i=order.length-1;i>0;i--){state=(Math.imul(state,1664525)+1013904223)>>>0;const j=state%(i+1);[order[i],order[j]]=[order[j],order[i]]}pixelTurnOffRank=Array(PIXEL_COUNT);order.forEach((pixel,rank)=>pixelTurnOffRank[pixel]=rank);return pixelTurnOffRank}
+function render(){let total=elapsed();if(session.activeSince&&total>=MAX){finishBlock();total=elapsed()}const running=!!session.activeSince,started=running||session.blocks>0,clock=$('#clock'),timer=$('#focusTimer');clock.textContent=clockText(total);clock.hidden=false;$$('.timer-label').forEach(el=>el.hidden=started);const status=$('#timerStatus');status.hidden=!started;status.textContent=running?'FOCUSING':'PAUSED';$('#wrapTime').textContent=fmt(total);const lit=drawPixels(total);$('#timerPixels').setAttribute('aria-label',lit+' of '+PIXEL_COUNT+' focus pixels lit');{const g=$('#ftGoal'),lv=total>=HOUR?2:total>=TEN_MIN?1:0;if(gwas!==null&&lv>gwas){g.classList.add('pop');g.addEventListener('animationend',()=>g.classList.remove('pop'),{once:true})}$('.ft-bot').classList.toggle('long',total>=HOUR);g.classList.toggle('on',lv>0);g.classList.toggle('fire',lv>1);g.setAttribute('aria-label',lv>1?'One hour reached':lv?'10 minute goal reached':'10 minute goal');gwas=lv}if(running&&!pxRaf){const f=()=>{drawPixels(elapsed());pxRaf=session.activeSince?requestAnimationFrame(f):0};pxRaf=requestAnimationFrame(f)}timer.setAttribute('aria-label',running?'Pause focus':started?'Resume focus':'Start Focus');timer.setAttribute('aria-pressed',String(running));timer.disabled=!running&&total>=MAX;const wrap=$('#wrapOpen');wrap.disabled=running||total<60000;setButtonLabel(wrap,total<60000?'Focus at least 1 min':running?'Pause focus to wrap':"Wrap Today's Session")}
 $('#ready').onclick=()=>{savePrep();$('#wrapPanel').hidden=true;render();$('#focus').scrollIntoView({behavior:'smooth',block:'center'})};
 $('#focusTimer').onclick=()=>{if(session.activeSince)finishBlock();else{startBlock();$('#wrapPanel').hidden=true}render()};
-$('#resetTimer').onclick=()=>{session={totalMs:0,activeSince:null,blocks:0,lastBlockMs:0,startedAt:null,endedAt:null};saveSession();$('#wrapPanel').hidden=true;render()};
-function shareDetails(){const done=[...document.querySelectorAll('#stepList input[data-kind="step"]:checked')].map(x=>x.nextElementSibling.textContent.trim());const goal=$('#p1').value.trim();const goalDone=!!goal&&!!$('#stepList input[data-kind="goal"]')?.checked;const start=session.startedAt||Date.now()-elapsed(),end=session.endedAt||Date.now();return {times:`${clockTime(start)} - ${clockTime(end)}`,duration:`${durationText(elapsed())} of Deep Focus`,goal,goalDone,done,feeling:$('#feeling').value.trim()}}
-function sessionText(){const d=shareDetails();const details=[...(d.goal?[`${unicodeBold('Goal:')} ${d.goalDone?'✅':''}${d.goal}`]:[]),...(d.done.length?[`${unicodeBold('Tasks:')}`,...d.done.map(x=>`✅${x}`)]:[])];return `${d.times}\n${d.duration}${details.length?`\n\n${details.join('\n')}`:''}${d.feeling?`\n\n${d.feeling}`:''}`}
+let resetArmed=false,resetConfirmTimer=null;$('#resetTimer').onclick=()=>{const button=$('#resetTimer');if(!resetArmed){resetArmed=true;button.classList.add('is-confirming');setButtonLabel(button,'Confirm');clearTimeout(resetConfirmTimer);resetConfirmTimer=setTimeout(()=>{resetArmed=false;button.classList.remove('is-confirming');setButtonLabel(button,'Reset')},4000);return}clearTimeout(resetConfirmTimer);resetArmed=false;button.classList.remove('is-confirming');setButtonLabel(button,'Reset');session={totalMs:0,activeSince:null,blocks:0,lastBlockMs:0,startedAt:null,endedAt:null};saveSession();$('#wrapPanel').hidden=true;render()};
+function shareDetails(){const total=elapsed(),done=[...document.querySelectorAll('#stepList input[data-kind="step"]:checked')].map(x=>x.nextElementSibling.textContent.trim());const goal=$('#p1').value.trim();const goalDone=!!goal&&!!$('#stepList input[data-kind="goal"]')?.checked;const start=session.startedAt||Date.now()-total,end=session.endedAt||Date.now();const badge=total>=HOUR?'⭐ 🔥 ':total>=TEN_MIN?'⭐ ':'';return {times:`${clockTime(start)} - ${clockTime(end)}`,duration:`${badge}${durationText(total)} of Deep Focus`,goal,goalDone,done,feeling:$('#feeling').value.trim()}}
+function sessionText(){const d=shareDetails();const chunks=[];if(d.goal)chunks.push(`${unicodeBold('Goal')}\n${d.goalDone?'✅':''}${d.goal}`);if(d.done.length)chunks.push(`${unicodeBold('Tasks')}\n${d.done.map(x=>`✅${x}`).join('\n')}`);return `${d.times}\n${unicodeBold(d.duration)}${chunks.length?`\n\n${chunks.join('\n\n')}`:''}${d.feeling?`\n\n${d.feeling}`:''}`}
 function updateSharePreview(){const d=shareDetails();$('#shareTimes').textContent=d.times;$('#shareDuration').textContent=d.duration;$('#shareWork').hidden=!d.goal;$('#shareWorkValue').textContent=d.goal?`${d.goalDone?'✅':''}${d.goal}`:'';const doneBlock=$('#shareDoneBlock');doneBlock.hidden=!d.done.length;$('#shareDone').replaceChildren(...d.done.map(task=>{const line=document.createElement('div');line.textContent=`✅${task}`;return line}));const feeling=$('#shareFeeling');feeling.hidden=!d.feeling;feeling.textContent=d.feeling}
 $('#wrapOpen').onclick=()=>{session.endedAt=Date.now();saveSession();makeSteps();$('#wrapPanel').hidden=false;$('#wrapTime').textContent=fmt(elapsed());updateSharePreview();$('#wrapPanel').scrollIntoView({behavior:'smooth',block:'center'})};
 $('#feeling').addEventListener('input',()=>{sizeTextArea($('#feeling'));try{localStorage.setItem('gh_feeling',$('#feeling').value)}catch(e){};if(!$('#wrapPanel').hidden)updateSharePreview()});
