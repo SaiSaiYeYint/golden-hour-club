@@ -18,10 +18,16 @@ h1,h2,h3{font-family:'Noto Serif Myanmar','Fraunces',Georgia,serif;line-height:1
 html[data-lang=en] :is(h1,h2,h3){font-family:'Fraunces',Georgia,serif}
 html[data-lang=my] .en,html[data-lang=en] .my{display:none}
 [hidden]{display:none!important}
-.dock{display:none}
+.dock{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:1000;display:flex;flex-direction:column;gap:6px;width:min(100% - 20px,760px);margin:auto;padding:8px;border:1px solid var(--line);border-radius:16px;background:color-mix(in srgb,var(--card) 94%,transparent);box-shadow:0 8px 28px #0005;backdrop-filter:blur(12px)}
 .dock>div{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;pointer-events:auto}
 .dock button{background:var(--bg)}
 .dock button.p{background:var(--btn)}
+#et{max-height:130px;overflow:auto;scrollbar-width:thin}
+#et button{flex:0 0 auto;padding:5px 9px;font:600 12px/1.2 'Instrument Sans',system-ui,sans-serif;white-space:nowrap}
+.dock-actions button{flex:1 1 auto;font-size:12px}
+.dock-actions #db{font-weight:900}
+#saveStatus{width:100%;color:var(--mut);font:12px/1.35 'Instrument Sans',system-ui,sans-serif;text-align:center}
+#saveStatus[hidden]{display:none!important}
 #off{font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 14px;color:var(--mut)}
 button{display:inline-flex;align-items:center;justify-content:center;text-align:center;font:inherit;line-height:1.2;font-size:14px;cursor:pointer;border:1px solid var(--ink);background:none;color:var(--ink);padding:5px 12px;border-radius:999px;min-height:36px}
 button > *{position:relative;top:7px}
@@ -110,7 +116,7 @@ html[data-lang=en] button{font-family:'Fraunces',Georgia,serif}
 
 .app-only,#appbar,#appnext{display:none}
 html.app body{overflow:hidden}
-html.app main{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 62px);bottom:0;margin:0 auto;padding:12px 20px calc(100px + env(safe-area-inset-bottom,0px));overflow-y:auto;scrollbar-width:none}
+html.app main{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 62px);bottom:0;margin:0 auto;padding:12px 20px calc(200px + env(safe-area-inset-bottom,0px));overflow-y:auto;scrollbar-width:none}
 html.app main>*:not(#protocol){display:none!important}
 html.app #protocol{padding:0;border-top:0;margin-top:0}html.app #protocol>*:not([data-ph]){display:none!important}
 html.app #protocol [data-ph]{display:none}
@@ -246,10 +252,10 @@ html.app #appnext:not([hidden]){display:block;position:fixed;left:0;right:0;bott
 </div>
 <div data-ph="focus"><h3 class="phase-title"><span class="my">၂။ အပြည့်အဝ အာရုံစိုက်ပါ</span><span class="en">2. Focus</span></h3>
 <p class="rule"><span class="my">လေးလေးနက်နက် လုပ်ရင်လုပ်၊ မလုပ်ရင် ဘာမှမလုပ်ပါနဲ့။</span><span class="en">Work deeply, or do nothing.</span></p>
-<p><span class="my">တစ်နေ့ ၁၀ မိနစ်ပဲ လုပ်နိုင်ရင်လည်း ရပါတယ်။ အစက်တွေ အပြည့်ဖြစ်ပြီး ကြယ်လေး လင်းလာရင် ဒီနေ့ပန်းတိုင် ရောက်ပါပြီ။ ဆက်လုပ်ရင် အစက်တွေ တစ်စက်ချင်း မှိန်သွားပြီး တစ်နာရီမှာ ပြီးမြောက်ပါမယ်။</span><span class="en">Ten minutes counts. When the dots fill up and the star lights, today's goal is met. Keep going and the dots fade out one by one until the hour is done.</span></p>
 <div class="tool focus-tool" id="focus">
 <button class="p focus-timer" id="focusTimer" type="button" aria-label="Start Focus" aria-pressed="false"><span class="ft-top"><i class="ft-dot" aria-hidden="true"></i><span class="timer-label">Start Focus</span><span id="timerStatus" hidden></span></span><canvas id="timerPixels" role="img" aria-label="Focus progress pixels"></canvas><span class="ft-bot"><strong id="clock">60:00</strong><span class="ft-goal" id="ftGoal" role="img" aria-label="10 minute goal"><svg class="st" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.2 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg class="fl" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="flameGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sun1)"/><stop offset="1" style="stop-color:var(--sun2)"/></linearGradient></defs><path d="M12 1.6C13.2 5 10.5 7.3 9.2 9.6 9 8.3 8.3 7.1 7.2 6.3 4.1 9.2 2.5 12.3 2.5 15.8 2.5 20 6.3 22.5 12 22.5s9.5-3.5 9.5-7.5C21.5 9.9 17.4 5.1 12 1.6Z"/></svg></span></span></button>
 </div>
+<p><span class="my">တစ်နေ့ ၁၀ မိနစ်ပဲ လုပ်နိုင်ရင်လည်း ရပါတယ်။ အစက်တွေ အပြည့်ဖြစ်ပြီး ကြယ်လေး လင်းလာရင် ဒီနေ့ပန်းတိုင် ရောက်ပါပြီ။ ဆက်လုပ်ရင် အစက်တွေ တစ်စက်ချင်း မှိန်သွားပြီး တစ်နာရီမှာ ပြီးမြောက်ပါမယ်။</span><span class="en">Ten minutes counts. When the dots fill up and the star lights, today's goal is met. Keep going and the dots fade out one by one until the hour is done.</span></p>
 
 </div>
 <div data-ph="wrap"><h3 class="phase-title"><span class="my">၃။ အဆုံးသတ်ပါ</span><span class="en">3. Wrap</span></h3>
@@ -262,11 +268,11 @@ html.app #appnext:not([hidden]){display:block;position:fixed;left:0;right:0;bott
 <div class="row wrap-entry"><button class="p main-action" id="wrapOpen" disabled>Focus at least 1 min</button></div>
 </div>
 <div class="tool" id="wrapPanel" hidden>
-<div class="wrap-summary share-preview" id="sharePreview" aria-live="polite"><div class="share-emphasis" id="shareTimes"></div><div class="share-emphasis" id="shareDuration"><span class="duration-emoji" id="shareDurationEmoji" hidden></span><span id="shareDurationText"></span></div><div id="shareWork" hidden><strong>Goal</strong><span id="shareWorkValue"></span></div><div id="shareDoneBlock" hidden><div><strong>Tasks</strong></div><div class="share-done-list" id="shareDone"></div></div><div class="share-feeling" id="shareFeeling"></div></div>
 <label><span class="my">အပြီးသတ်ခဲ့တာတွေကို အမှန်ခြစ်ပါ။</span><span class="en">Tick off what you completed.</span></label>
 <div id="stepList"></div>
 <label for="feeling"><span class="my">ဒီ session အပေါ် ဘယ်လိုခံစားရလဲ။</span><span class="en">How do I feel about this session?</span></label>
 <textarea class="write-line auto-grow" id="feeling" rows="1" data-ph-my="ဒီမှာ ရေးပါ" data-ph-en="Write here" placeholder="ဒီမှာ ရေးပါ"></textarea>
+<div class="wrap-summary share-preview" id="sharePreview" aria-live="polite"><div class="share-emphasis" id="shareTimes"></div><div class="share-emphasis" id="shareDuration"><span class="duration-emoji" id="shareDurationEmoji" hidden></span><span id="shareDurationText"></span></div><div id="shareWork" hidden><strong>Goal</strong><span id="shareWorkValue"></span></div><div id="shareDoneBlock" hidden><div><strong>Tasks</strong></div><div class="share-done-list" id="shareDone"></div></div><div class="share-feeling" id="shareFeeling"></div></div>
 <div class="row"><button class="p main-action" id="completeSession">Complete Session &amp; Share to Join the Movement</button></div>
 </div>
 </div>
@@ -294,10 +300,11 @@ html.app #appnext:not([hidden]){display:block;position:fixed;left:0;right:0;bott
 <div class="row noprint"><button class="p" id="dlc">Download The Card</button></div>
 </section>
 </main>
-<div class="dock">
+<div class="dock" id="editorDock">
 <div id="off" hidden=""><span class="my">အင်တာနက် မရှိပါ။ ဒီစက်ထဲမှာ ဆက်သုံးလို့ရပါတယ်။</span><span class="en">You're offline. Everything still works on this device.</span></div>
-<div id="et" hidden=""><button data-a="h">+ Heading</button><button data-a="t">+ Text</button><button data-a="s">+ Section</button><button data-a="u">↑</button><button data-a="d">↓</button><button data-a="x">Delete</button></div>
-<div><button id="lt" aria-label="Language">EN</button><button id="eb">Edit</button><button id="db" class="p">Download</button></div>
+<div id="et" hidden=""><button data-a="h">+ Heading</button><button data-a="t">+ Text</button><button data-a="s">+ Section</button><button data-a="u">Block ↑</button><button data-a="d">Block ↓</button><button data-a="su">Section ↑</button><button data-a="sd">Section ↓</button><button data-a="pu">Session ↑</button><button data-a="pd">Session ↓</button><button data-a="x">Delete block</button></div>
+<div class="dock-actions"><button id="lt" aria-label="Language">EN</button><button id="eb">Edit Page</button><button id="db" class="p">Save to Original</button></div>
+<div id="saveStatus" role="status" aria-live="polite" hidden></div>
 </div>
 <div id="appbar"><button id="xb" aria-label="Exit">&times;</button><nav aria-label="Steps"><button data-g="ritual" class="on">Ritual</button><button data-g="prep" disabled>Prep</button><button data-g="focus" disabled>Focus</button><button data-g="wrap" disabled>Wrap</button></nav></div>
 <div id="appnext" hidden><button class="p" id="gw">Go to Wrap</button></div>
@@ -310,28 +317,33 @@ $('#lt').onclick=()=>setLang(H.dataset.lang==='my'?'en':'my');
 setLang(H.dataset.lang);
 wrapButtonText();
 let ed=false,cur=null;
-const EB='main h1,main h2,main h3,main p,main li,main label';
-function setEdit(on){ed=on;H.classList.toggle('edit-on',on);$$(EB).forEach(e=>on?e.setAttribute('contenteditable','true'):e.removeAttribute('contenteditable'));$$('main input,main textarea').forEach(e=>e.readOnly=on);$('#et').hidden=!on;setButtonLabel($('#eb'),on?'Done':'Edit');if(!on)cur=null}
+const EB='main .my,main .en,main h1,main h2,main h3,main p,main li,main label,#shareWork>strong,#shareDoneBlock>div:first-child strong';
+function editTargets(){return $$(EB).filter(e=>!e.closest('button,#focusTimer,#stepList')&&(!e.matches('h1,h2,h3,p,li,label')||!e.querySelector('.my,.en')))}
+function setEdit(on){ed=on;H.classList.toggle('edit-on',on);$$('main [contenteditable=true]').forEach(e=>e.removeAttribute('contenteditable'));if(on)editTargets().forEach(e=>e.setAttribute('contenteditable','true'));$$('main input,main textarea').forEach(e=>e.readOnly=on);$('#et').hidden=!on;$('#saveStatus').hidden=true;setButtonLabel($('#eb'),on?'Done Editing':'Edit Page');if(!on)cur=null}
 $('#eb').onclick=()=>setEdit(!ed);
 document.addEventListener('focusin',e=>{const b=e.target.closest&&e.target.closest('[contenteditable=true]');if(b)cur=b});
-function mk(t,a,b){const e=document.createElement(t);e.innerHTML='<span class="my">'+a+'</span><span class="en">'+b+'</span>';e.setAttribute('contenteditable','true');return e}
+function mk(t,a,b){const e=document.createElement(t),my=document.createElement('span'),en=document.createElement('span');my.className='my';my.textContent=a;en.className='en';en.textContent=b;e.append(my,en);return e}
 function ren(el,k){const l=H.dataset.lang;if(k==='b'){const s=el.querySelector('.'+l)||el.querySelector(':scope > .button-label');if(!s)return;const v=prompt('Button text',s.textContent);if(v&&v.trim())s.textContent=v.trim()}else{const key=l==='my'?'phMy':'phEn';const v=prompt('Placeholder text',el.dataset[key]||'');if(v!==null){el.dataset[key]=v;el.placeholder=v}}}
-document.addEventListener('click',e=>{if(!ed)return;const b=e.target.closest('main button'),i=e.target.closest('main input,main textarea');if(b){e.preventDefault();e.stopImmediatePropagation();if(!b.dataset.m)ren(b,'b')}else if(i)ren(i,'p')},true);
-function add(k){const ref=cur&&(cur.closest('.tool')||cur);if(!ref){alert('Tap a text block first');return}
+document.addEventListener('click',e=>{if(!ed)return;const b=e.target.closest('main button,#appbar nav button'),i=e.target.closest('main input[data-ph-my],main input[data-ph-en],main textarea[data-ph-my],main textarea[data-ph-en]');if(b){e.preventDefault();e.stopImmediatePropagation();if(!b.dataset.m)ren(b,'b')}else if(i){e.preventDefault();e.stopImmediatePropagation();ren(i,'p')}},true);
+function blockFor(e){return e&&e.closest('p,h1,h2,h3,li,blockquote,label')}
+function add(k){const ref=blockFor(cur)||cur;if(!ref){alert('Select a text block first');return}
 let n,at=ref;
-if(k==='s'){n=document.createElement('section');n.append(mk('h2','ခေါင်းစဉ်အသစ်','New section'),mk('p','စာရေးပါ','Type here'));at=ref.closest('section,.hero')||ref}
-else if(k==='h'){n=mk('h3','ခေါင်းစဉ်','Heading');if(ref.tagName==='LI')at=ref.parentNode}
-else n=ref.tagName==='LI'?mk('li','စာရေးပါ','Type here'):mk('p','စာရေးပါ','Type here');
-at.after(n);(k==='s'?n.firstChild:n).focus()}
-function mv(d){const e=cur;if(!e||e.closest('.tool'))return;const s=d<0?e.previousElementSibling:e.nextElementSibling;if(s)d<0?s.before(e):s.after(e)}
-function del(){const e=cur;if(!e||e.closest('.tool'))return;if(confirm('Delete this block?')){e.remove();cur=null}}
-$('#et').onclick=e=>{const a=e.target.closest('button');if(!a)return;const k=a.dataset.a;if(k==='u')mv(-1);else if(k==='d')mv(1);else if(k==='x')del();else add(k)};
+if(k==='s'){n=document.createElement('section');n.append(mk('h2','ခေါင်းစဉ်အသစ်','New section'),mk('p','စာရေးပါ','Type here'));at=cur.closest('main>section')||ref}
+else if(k==='h')n=mk('h3','ခေါင်းစဉ်','Heading');
+else n=mk('p','စာရေးပါ','Type here');
+at.after(n);n.querySelectorAll('.my,.en').forEach(x=>x.setAttribute('contenteditable','true'));cur=n.querySelector('.'+H.dataset.lang)||n.firstElementChild;cur.focus()}
+function mv(d){const e=blockFor(cur);if(!e)return;const s=d<0?e.previousElementSibling:e.nextElementSibling;if(s&&s.parentElement===e.parentElement)d<0?s.before(e):s.after(e)}
+function moveSection(d){const e=cur&&cur.closest('main>section');if(!e)return;const siblings=$$('main>section'),i=siblings.indexOf(e),s=siblings[i+d];if(s)d<0?s.before(e):s.after(e)}
+function movePage(d){const e=cur&&cur.closest('#protocol>[data-ph]');if(!e)return;const pages=[...$('#protocol').children].filter(x=>x.matches('[data-ph]')&&['ritual','prep','focus','wrap'].includes(x.dataset.ph)),i=pages.indexOf(e),s=pages[i+d];if(s){d<0?s.before(e):s.after(e);document.dispatchEvent(new Event('gh-page-order-changed'))}}
+function del(){const e=blockFor(cur)||cur;if(!e||e.closest('.tool')&&e===e.closest('.tool'))return;if(confirm('Delete this block?')){e.remove();cur=null}}
+$('#et').onclick=e=>{const a=e.target.closest('button');if(!a)return;const k=a.dataset.a;if(k==='u')mv(-1);else if(k==='d')mv(1);else if(k==='su')moveSection(-1);else if(k==='sd')moveSection(1);else if(k==='pu')movePage(-1);else if(k==='pd')movePage(1);else if(k==='x')del();else add(k)};
 const off=()=>{$('#off').hidden=navigator.onLine};addEventListener('offline',off);addEventListener('online',off);off();
 (()=>{try{$$('link[rel=icon],link[rel=apple-touch-icon]').forEach(l=>l.remove());const c=document.createElement('canvas');c.width=c.height=180;const x=c.getContext('2d');x.fillStyle='#17101c';x.fillRect(0,0,180,180);const g=x.createRadialGradient(90,112,4,90,112,60);g.addColorStop(0,'#ffc04a');g.addColorStop(1,'#ff7a45');x.fillStyle=g;x.beginPath();x.arc(90,112,58,Math.PI,0);x.fill();x.fillRect(24,116,132,4);['apple-touch-icon','icon'].forEach(r=>{const l=document.createElement('link');l.rel=r;l.href=c.toDataURL();document.head.append(l)})}catch(e){}})();
-$('#db').onclick=async()=>{
-const was=ed;setEdit(false);const html='<!doctype html>\n'+H.outerHTML;if(was)setEdit(true);
-try{const d=window.claude&&await claude.use('downloads');if(d){await d.save({filename:'golden-hour-club.html',data:html});return}}catch(e){if(e&&e.code==='declined')return}
-const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([html],{type:'text/html'}));a.download='golden-hour-club.html';a.click()};
+let originalFileHandle=null;
+const pageFileName=()=>decodeURIComponent(location.pathname.split('/').pop()||'golden-hour-club.html');
+async function chooseOriginalFile(){if(!window.showOpenFilePicker)throw new Error('Direct file saving is not available in this browser.');const [handle]=await showOpenFilePicker({multiple:false,startIn:'downloads',types:[{description:'HTML page',accept:{'text/html':['.html','.htm']}}]});if(handle.name.toLowerCase()!==pageFileName().toLowerCase())throw new Error('Choose the open page file: '+pageFileName());return handle}
+async function writeOriginalFile(html){if(!originalFileHandle)originalFileHandle=await chooseOriginalFile();let permission=await originalFileHandle.queryPermission({mode:'readwrite'});if(permission!=='granted')permission=await originalFileHandle.requestPermission({mode:'readwrite'});if(permission!=='granted')throw new Error('Write permission was not granted.');const writer=await originalFileHandle.createWritable();await writer.write(html);await writer.close()}
+$('#db').onclick=async()=>{const status=$('#saveStatus'),was=ed;status.hidden=false;status.textContent='Preparing your page…';if(was)setEdit(false);const html='<!doctype html>\n'+H.outerHTML;if(was)setEdit(true);try{await writeOriginalFile(html);status.hidden=false;status.textContent='Saved to the open HTML file. Reload the page to see the published copy.'}catch(error){if(error&&error.name==='AbortError'){status.hidden=true;return}const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([html],{type:'text/html'}));a.download=pageFileName();a.click();status.hidden=false;status.textContent=(error&&error.message?error.message+' ':'')+'Downloaded a copy; replace the original HTML file with it.'}};
 const K='gh_prep',stepIds=['step1','step2','step3','step4','step5'],ids=['p1','p3',...stepIds],setupIds=['ghPlace','ghTime','ghRitual','ghRitual2','ghRitual3'],SK='gh_session_v3';
 let session={totalMs:0,activeSince:null,blocks:0,lastBlockMs:0,startedAt:null,endedAt:null};
 try{const saved=JSON.parse(localStorage.getItem(K)||'{}');[...ids,...setupIds].forEach(i=>{if(saved[i])$('#'+i).value=saved[i]});if(saved.p2){saved.p2.split(/\r?\n/).slice(0,5).forEach((v,i)=>{if(v.trim())$('#'+stepIds[i]).value=v.replace(/^\s*\d+[.။、)\s]+/,'')})}session={...session,...JSON.parse(localStorage.getItem(SK)||'{}')}}catch(e){}
@@ -385,7 +397,8 @@ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([html],{
 try{ap={...ap,...JSON.parse(localStorage.getItem('gh_app')||'{}')}}catch(e){}
 const sv=()=>{try{localStorage.setItem('gh_app',JSON.stringify(ap))}catch(e){}},lock=async()=>{try{wl=await navigator.wakeLock.request('screen')}catch(e){}},relw=()=>{try{wl&&wl.release()}catch(e){}wl=null};
 const gate=()=>{$('#appnext').hidden=!(R.dataset.ph==='focus'&&!session.activeSince&&elapsed()>0)};
-function go(p){const k=PH.indexOf(p);ap.ph=p;ap.max=Math.max(ap.max||0,k);sv();R.dataset.ph=p;$$('#appbar nav button').forEach((b,i)=>{b.classList.toggle('on',i===k);b.disabled=i>ap.max});if(p==='ritual')ritualPairs.forEach(([a,b])=>$('#'+a).value=$('#'+b).value);$('main').scrollTop=0;$$('textarea.auto-grow').forEach(sizeTextArea);gate()}
+ function go(p){const k=PH.indexOf(p);ap.ph=p;ap.max=Math.max(ap.max||0,k);sv();R.dataset.ph=p;$$('#appbar nav button').forEach((b,i)=>{b.classList.toggle('on',i===k);b.disabled=i>ap.max});if(p==='ritual')ritualPairs.forEach(([a,b])=>$('#'+a).value=$('#'+b).value);$('main').scrollTop=0;$$('textarea.auto-grow').forEach(sizeTextArea);gate()}
+ document.addEventListener('gh-page-order-changed',()=>{const current=R.dataset.ph||ap.ph;PH.splice(0,PH.length,...[...$('#protocol').children].filter(x=>x.matches('[data-ph]')&&['ritual','prep','focus','wrap'].includes(x.dataset.ph)).map(x=>x.dataset.ph));const nav=$('#appbar nav');PH.forEach(p=>{const b=nav.querySelector('[data-g="'+p+'"]');if(b)nav.append(b)});ap.max=Math.max(0,PH.indexOf(current));go(PH.includes(current)?current:PH[0])});
 const ritualPairs=[['rin1','ghRitual'],['rin2','ghRitual2'],['rin3','ghRitual3']];
 ritualPairs.forEach(([appId,setupId])=>{$('#'+appId).addEventListener('input',e=>{const setup=$('#'+setupId);setup.value=e.target.value;setup.dispatchEvent(new Event('input',{bubbles:true}));sizeTextArea(e.target)})});
 $('#rb').onclick=()=>go('prep');$('#gw').onclick=()=>go('wrap');
